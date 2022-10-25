@@ -54,8 +54,6 @@ server.get(
         }
 
         var accountModel = accountHelpers.getAccountModel(req);
-        //accountModel.profile.hobby = 'fock';
-        //accountModel.profile.petname = 'beech';
 
         res.render('account/accountDashboard', {
             account: accountModel,
@@ -728,11 +726,11 @@ server.post('PasswordResetDialogForm', server.middleware.https, function (req, r
 server.get('PasswordReset', server.middleware.https, function (req, res, next) {
     var CustomerMgr = require('dw/customer/CustomerMgr');
     var ContentMgr = require('dw/content/ContentMgr');
+    var content = null;
     if(req.currentCustomer){
-        var content = ContentMgr.getContent('registeredUserResetPassword');
-    }
-    else{
-        var content = ContentMgr.getContent('unregisteredUserResetPassword');
+        content = ContentMgr.getContent('registeredUserResetPassword');
+    } else {
+        content = ContentMgr.getContent('unregisteredUserResetPassword');
     }
     res.render('account/password/requestPasswordReset', {content: content});
     next();
