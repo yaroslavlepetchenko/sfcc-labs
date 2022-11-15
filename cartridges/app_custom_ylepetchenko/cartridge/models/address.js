@@ -11,7 +11,12 @@ var base = module.superModule;
  function address(addressObject) {
     base.call(this, addressObject);
 
-    this.address.addressType = addressObject.custom.addressType;
+    if(addressObject.hasOwnProperty('raw')) {
+        this.address.addresstype = addressObject.raw.custom.addressType;
+    }
+    else {
+        this.address.addresstype = addressObject.custom.addressType;
+    }
 }
 
 module.exports = address;
