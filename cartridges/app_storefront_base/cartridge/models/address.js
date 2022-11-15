@@ -28,8 +28,28 @@ function createAddressObject(addressObject) {
             companyName: addressObject.companyName,
             suffix: addressObject.suffix,
             suite: addressObject.suite,
-            title: addressObject.title
+            title: addressObject.title,
+            //addressType: empty(addressObject.custom.addressType) ? 'shipping' : addressObject.custom.addressType
         };
+
+        if(addressObject.hasOwnProperty('raw')) {
+            result.addresstype = addressObject.raw.custom.addressType;
+        }
+        else {
+            result.addresstype = addressObject.custom.addressType;
+        }
+        // if(empty(addressObject.raw.custom.addressType)){
+        //     result.addressType = addressObject.raw.custom.addressType;
+        // }
+        // else {
+        //     result.addressType = 'shipping';
+        // }
+        // if(empty(addressObject.custom.addressType)){
+        //     result.addressType = addressObject.custom.addressType;
+        // }
+        // else {
+        //     result.addressType = 'shipping';
+        // }
 
         if (result.stateCode === 'undefined') {
             result.stateCode = '';
