@@ -76,45 +76,6 @@ module.exports = {
     },
 
     resetPassword: function () {
-    //     $('.send-email-btn').click(function(e){
-    //         //e.preventDefault();
-    //         var form = $('.reset-password-form');
-    //         var url = form.attr('action');
-    //         form.spinner().start();
-    //         $('.reset-password-form').trigger('login:register', e);
-    //         $.ajax({
-    //             url: url,
-    //             type: 'post',
-    //             dataType: 'json',
-    //             data: form.serialize(),
-    //             success: function (data) {
-    //                 form.spinner().stop();
-    //                 if (!data.success) {
-    //                     formValidation(form, data);
-    //                 } else {
-    //                     $('.request-password-title').text(data.receivedMsgHeading);
-    //                     $('.request-password-body').empty()
-    //                         .append('<p>' + data.receivedMsgBody + '</p>');
-    //                     if (!data.mobile) {
-    //                         $('#submitEmailButton').text(data.buttonText)
-    //                             .attr('data-dismiss', 'modal');
-    //                     } else {
-    //                         $('.send-email-btn').empty()
-    //                             .html('<a href="'
-    //                                 + data.returnUrl
-    //                                 + '" class="btn btn-primary btn-block">'
-    //                                 + data.buttonText + '</a>'
-    //                             );
-    //                     }
-    //                 }
-    //             },
-    //             error: function () {
-    //                 form.spinner().stop();
-    //             }
-    //         });
-    //         return false;
-    //     });
-    // },
         $('.reset-password-form').submit(function (e) {
             var form = $(this);
             e.preventDefault();

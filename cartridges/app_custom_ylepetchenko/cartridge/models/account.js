@@ -11,7 +11,7 @@ var base = module.superModule;
 function account(currentCustomer, addressModel, orderModel) {
     base.call(this, currentCustomer, addressModel, orderModel);
 
-    if(currentCustomer.profile){
+    if(!empty(currentCustomer.profile)){
         this.profile.hobby = currentCustomer.raw.profile.custom.hobby;
         this.profile.petname = currentCustomer.raw.profile.custom.petname;
     }
