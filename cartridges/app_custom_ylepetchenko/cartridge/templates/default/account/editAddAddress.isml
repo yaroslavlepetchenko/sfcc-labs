@@ -20,6 +20,9 @@
                             <h2>${Resource.msg('label.addressbook.addnewaddress','account',null)}</h2>
                     </isif>
                     </div>
+                    <div class="login-form-nav">
+                            <isinclude template="account/components/navTabsAddress" />
+                        </div>
                     <div class="card-body">
                         <isinclude template="account/addressForm"/>
                     </div>
