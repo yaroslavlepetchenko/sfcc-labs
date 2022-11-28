@@ -1,0 +1,12 @@
+<div class="refinement-promotion">
+    <ul class="values content">
+    <isloop items="${refinement.values}" var="promotion">
+        <li class="col-sm-4 col-md-12">
+        <button data-href="${promotion.url}">
+            <i class="fa fa-circle-o"></i>
+            <span>${promotion.name}</span>
+        </button>
+        </li>
+    </isloop>
+</ul>
+</div>
