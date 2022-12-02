@@ -1,0 +1,24 @@
+<a href="${URLUtils.url('Product-SizeChart', 'cid', product.sizeChartId)}">${Resource.msg('link.size_chart', 'product', null)}</a>
+<div class="size-chart-collapsible"></div>
+
+<label for="quantity-${loopState && loopState.count ? loopState.count : '1' }">${Resource.msg('label.quantity', 'common', null)}</label>
+<select class="quantity-select custom-select form-control" id="quantity-${loopState && loopState.count ? loopState.count : '1' }">
+    <isloop items="${product.quantities}" var="quantity">
+        <option value="${quantity.value}"
+                <isif condition="${product.productType !== 'bundle'}">data-url="${quantity.url}"</isif>
+                ${quantity.selected ? 'selected' : ''}
+        >
+            ${quantity.value}
+        </option>
+    </isloop>
+</select>
+
+<hr/>
+
+<button class="add-to-cart btn btn-primary"
+                data-toggle="modal" data-target="#chooseBonusProductModal"
+                data-pid="${product.id}"
+                ${!product.readyToOrder || !product.available ? "disabled" : ""}>
+            <i class="fa fa-shopping-bag"></i>
+            ${Resource.msg('button.addtocart', 'common', null)}
+</button>

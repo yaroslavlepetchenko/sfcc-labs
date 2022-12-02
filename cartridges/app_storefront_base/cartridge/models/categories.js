@@ -28,6 +28,26 @@ function categoryToObject(category) {
         url: getCategoryUrl(category),
         id: category.ID
     };
+
+    if(category.custom.click){
+        result.click = category.custom.click;
+        if(category.custom.selectedClass){
+            result.clickClass = category.custom.selectedClass;
+        }
+    }
+    if(!category.custom.click){
+        result.click = false;
+    }
+    if(category.custom.sales){
+        result.sales = category.custom.sales;
+        if(category.custom.selectedClass){
+            result.salesClass = category.custom.selectedClass;
+        }
+    }
+    if(!category.custom.sales){
+        result.sales = false;
+    }
+    
     var subCategories = category.hasOnlineSubCategories() ?
         category.getOnlineSubCategories() : null;
 
