@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/mobileGridLookBook.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/mobileGridLookBook.js":
-/*!**********************************************************************************************!*\
-  !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/mobileGridLookBook.js ***!
-  \**********************************************************************************************/
+/***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js":
+/*!***********************************************************************************************!*\
+  !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n$(document).ready(function () {\n    $('body').on('click', '.show-more-button', function (e) {\n        e.preventDefault();\n\n        var $set2Element = $(this).closest('.look-book-layout').find('.look-book-set2');\n        $set2Element.removeClass('hide-set');\n\n        var $showMoreElement = $(this).closest('.look-book-layout').find('.show-more');\n        $showMoreElement.addClass('d-none');\n    });\n});\n\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/mobileGridLookBook.js?");
+eval("\r\n\r\nmodule.exports = {\r\n    dropdownStuff: function(){\r\n        console.log('boom');\r\n        $('dropdown-item dropdown-toggle cat').on('mouseover', function () {\r\n            $('onClp').css('display', 'flex');\r\n        });\r\n    }\r\n};\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js?");
 
 /***/ })
 

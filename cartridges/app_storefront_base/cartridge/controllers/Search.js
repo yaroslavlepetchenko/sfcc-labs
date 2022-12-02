@@ -71,8 +71,11 @@ server.get('Refinebar', cache.applyDefaultCache, function (req, res, next) {
     var ProductSearchModel = require('dw/catalog/ProductSearchModel');
     var ProductSearch = require('*/cartridge/models/search/productSearch');
     var searchHelper = require('*/cartridge/scripts/helpers/searchHelpers');
+    var PromotionMgr = require('dw/campaign/PromotionMgr');
 
     var apiProductSearch = new ProductSearchModel();
+    var promotions = PromotionMgr.getActiveCustomerPromotions();
+
     apiProductSearch = searchHelper.setupSearch(apiProductSearch, req.querystring, req.httpParameterMap);
     apiProductSearch.search();
     var productSearch = new ProductSearch(

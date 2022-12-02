@@ -43,13 +43,17 @@
                     </isif>
 
                     <!--- ATTRIBUTE REFINEMENTS --->
-                    <isif condition="${refinement.isAttributeRefinement || refinement.isPromotionRefinement}">
+                    <isif condition="${refinement.isAttributeRefinement}">
                         <isinclude template="search/refinements/attributes" />
                     </isif>
 
                     <!--- PRICE REFINEMENTS --->
                     <isif condition="${refinement.isPriceRefinement}">
                         <isinclude template="search/refinements/prices" />
+                    </isif>
+                    <!-- PROMOTION REFINEMENT -->
+                    <isif condition="${refinement.isPromotionRefinement}">
+                        <isinclude template="search/refinements/promotions" />
                     </isif>
                 </div>
             </div>

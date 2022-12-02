@@ -16,9 +16,13 @@
                         <a href="${URLUtils.url('Search-Show', 'cgid', category.ID)}" title="${category.displayName}">
                             <div class="category-tile">
                                 <img class="img-fluid" src="${category.custom.slotBannerImage.getURL()}" alt="${category.displayName}"/>
-                                <h1>
-                                    <isprint value="${category.displayName}" encoding="htmlcontent"/>
-                                </h1>
+                                            <div class="cat"><h1 class="dropdown-toggle dropdown">
+                                                <isprint value="${category.displayName}" encoding="htmlcontent"/>
+                                            </h1>
+                                                <a class="onClp" href="#" role="menuitem">
+                                                    ${category.onlineProducts[0].name}
+                                                </a>
+                                            </div>
                             </div>
                         </a>
                     </div>

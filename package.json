@@ -84,7 +84,7 @@
     "request-promise": "^4.2.4",
     "sass-loader": "^7.3.1",
     "selenium-standalone": "^6.23.0",
-    "sgmf-scripts": "^2.3.0",
+    "sgmf-scripts": "^2.4.2",
     "shelljs": "^0.8.3",
     "should": "^13.2.3",
     "sinon": "^1.17.7",
@@ -107,8 +107,8 @@
     "jquery": "^3.6.0"
   },
   "cartridges": [
-    "app_storefront_base",
-    "app_custom_ylepetchenko"
+    "app_custom_ylepetchenko",
+    "app_storefront_base"
   ],
   "browserslist": [
     "last 2 versions",

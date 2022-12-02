@@ -219,5 +219,15 @@ module.exports = {
             getContent($(this), $('#content-search-results'));
             $('.show-more-content').remove();
         });
+    },
+
+    dropdownStuff: function(){
+        $('div.cat').on('mouseover', function () {
+            console.log('woop-woop');
+            $(this).children('.onClp').css('display', 'flex');
+        });
+        $('div.cat').on('mouseout', function () {
+            $(this).children('a.onClp').css('display', 'none');
+        });
     }
 };

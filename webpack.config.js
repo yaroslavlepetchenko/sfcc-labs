@@ -20,23 +20,23 @@ var bootstrapPackages = {
     // Tooltip: 'exports-loader?Tooltip!bootstrap/js/src/tooltip',
     Util: 'exports-loader?Util!bootstrap/js/src/util'
 };
-function createJSFilePaths(catridgeName) {
+function createJSFilePaths(cartridgeName) {
 	const result = {};
-    let jsFiles = shell.ls(path.join(cwd, `./cartridges/${catridgeName}/cartridge/client/**/js/*.js`));
+    let jsFiles = shell.ls(path.join(cwd, `./cartridges/${cartridgeName}/cartridge/client/**/js/*.js`));
     jsFiles.forEach(filePath => {
-        let location = path.relative(path.join(cwd, `./cartridges/${catridgeName}/cartridge/client`), filePath);
+        let location = path.relative(path.join(cwd, `./cartridges/${cartridgeName}/cartridge/client`), filePath);
         location = location.substr(0, location.length - 3);
         result[location] = filePath;
     });
     return result;
 }
-function createScssPath(catridgeName)  {
+function createScssPath(cartridgeName)  {
     const result = {};
-    const cssFiles = shell.ls(path.join(cwd, `./cartridges/${catridgeName}/cartridge/client/**/scss/**/*.scss`));
+    const cssFiles = shell.ls(path.join(cwd, `./cartridges/${cartridgeName}/cartridge/client/**/scss/**/*.scss`));
     cssFiles.forEach(filePath => {
         const name = path.basename(filePath, '.scss');
         if (name.indexOf('_') !== 0) {
-            let location = path.relative(path.join(cwd, `./cartridges/${catridgeName}/cartridge/client`), filePath);
+            let location = path.relative(path.join(cwd, `./cartridges/${cartridgeName}/cartridge/client`), filePath);
             location = location.substr(0, location.length - 5).replace('scss', 'css');
             result[location] = filePath;
         }
@@ -45,14 +45,14 @@ function createScssPath(catridgeName)  {
     return result;
 }
 
-function createJSConfig(catridgeName) {
-    const jsFiles = createJSFilePaths(catridgeName);
+function createJSConfig(cartridgeName) {
+    const jsFiles = createJSFilePaths(cartridgeName);
 	return {
-        mode: 'production',
+        mode: 'development',
         name: 'js',
         entry: jsFiles,
         output: {
-            path: path.resolve(`./cartridges/${catridgeName}/cartridge/static`),
+            path: path.resolve(`./cartridges/${cartridgeName}/cartridge/static`),
             filename: '[name].js'
         },
         resolve: {
@@ -80,14 +80,14 @@ function createJSConfig(catridgeName) {
     }
 }
 
-function createSCSSConfig(catridgeName) {
-    const scssFiles = createScssPath(catridgeName);
+function createSCSSConfig(cartridgeName) {
+    const scssFiles = createScssPath(cartridgeName);
 	return {
         mode: 'none',
         name: 'scss',
         entry: scssFiles,
         output: {
-            path: path.resolve(`./cartridges/${catridgeName}/cartridge/static`),
+            path: path.resolve(`./cartridges/${cartridgeName}/cartridge/static`),
             filename: '[name].css'
         },
 		resolve: {
@@ -135,10 +135,8 @@ function createCompileConfig() {
   const cwd = process.cwd();
 	const path = require('path');
 	const packageJson = require(path.join(cwd, './package.json'));
-
     const jsConfig = packageJson.cartridges.map(createJSConfig).filter(item => Object.keys(item.entry).length > 0);
     const scssConfig  = packageJson.cartridges.map(createSCSSConfig).filter(item => Object.keys(item.entry).length > 0);
-
     return [...jsConfig, ...scssConfig]
 }
 

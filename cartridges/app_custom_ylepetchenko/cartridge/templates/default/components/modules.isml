@@ -2,3 +2,8 @@
     name="contentasset"
     attribute="aid"
 />
+
+<ismodule   template="product/popUpDetails"
+            name="dropdowndetails"
+            attribute="product"
+/>

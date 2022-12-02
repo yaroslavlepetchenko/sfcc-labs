@@ -31,6 +31,13 @@ function createAddressObject(addressObject) {
             title: addressObject.title
         };
 
+        // if(addressObject.hasOwnProperty('raw')) {
+        //     result.addresstype = addressObject.raw.custom.addressType;
+        // }
+        // else {
+        //     result.addresstype = addressObject.custom.addressType;
+        // }
+
         if (result.stateCode === 'undefined') {
             result.stateCode = '';
         }
