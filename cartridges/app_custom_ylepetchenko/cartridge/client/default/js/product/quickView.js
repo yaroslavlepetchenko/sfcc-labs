@@ -145,6 +145,7 @@ module.exports = {
     },
     updateAddToCart: function () {
         $('body').on('product:updateAddToCart', function (e, response) {
+            console.log('1');
             // update local add to cart (for sets)
             $('button.add-to-cart', response.$productContainer).attr('disabled',
                 (!response.product.readyToOrder || !response.product.available));

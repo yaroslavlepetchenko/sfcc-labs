@@ -1,0 +1,222 @@
+{
+    "step-types":
+    {
+      "script-module-step":
+      [
+        {
+          "@type-id":"custom.notifyUser",
+          "@supports-parallel-execution":"true",
+          "@supports-site-context":"true",
+          "@supports-organization-context":"false",
+          "description":"Step type to notify user",
+          "module":"app_custom_ylepetchenko/cartridge/scripts/steps/notificationJob.js",
+          "function":"start",
+          "transactional":"false",
+          "timeout-in-seconds":"900",
+          "parameters":
+          {
+            "parameter":
+            [
+              {
+                "@name":"sequentialFlowId",
+                "@type":"integer",
+                "@required":"true",
+                "description":"who knows"
+              }
+            ]
+          },
+          "status-codes":
+          {
+                    "status":
+            [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "FINISHED",
+                "description": "Used when the step finished successfully."
+                        },
+                        {
+                            "@code": "FINISHED_WITH_WARNINGS",
+                "description": "Used when the step finished with warnings."
+                        }
+            ]
+          }
+        },
+        {
+          "@type-id":"custom.MyCustomScriptStepType",
+          "@supports-parallel-execution":"true",
+          "@supports-site-context":"true",
+          "@supports-organization-context":"false",
+          "description":"My custom script step type",
+          "module":"app_custom_ylepetchenko/cartridge/scripts/steps/test.js",
+          "function":"go",
+          "transactional":"false",
+          "timeout-in-seconds":"900",
+          "parameters":
+          {
+            "parameter":
+            [
+              {
+                "@name":"MyParameter1",
+                "@type":"boolean",
+                "@required":"true",
+                "description":"A required boolean parameter."
+              },
+              {
+                "@name":"MyParameter2",
+                "@type":"long",
+                "@required":"false",
+                "description":"An optional long parameter. The default value is 10 when not defined.",
+                "default-value":"10"
+              },
+              {
+                "@name":"MyParameter3",
+                "@type":"double",
+                "@required":"true",
+                "@trim":"true",
+                "description":"A required double parameter were the raw value is trimmed, value must be betwenn -10 and +10.",
+                "min-value":"-10",
+                "max-value":"10"
+              },
+              {
+                "@name":"MyParameter4",
+                "@type":"string",
+                "@required":"false",
+                "description":"An optional string parameter, length must be between 10 and 50",
+                "min-length":"10",
+                "max-length":"50"
+              },
+              {
+                "@name":"MyParameter5",
+                "@type":"string",
+                "@required":"true",
+                "@trim":"false",
+                "description":"A required string parameter, must be one of One, Two or Three.",
+                "enum-values":
+                {
+                  "value":
+                  [
+                    "One",
+                    "Two",
+                    "Three"
+                  ]
+                }
+              },
+              {
+                "@name":"MyParameter6",
+                "@type":"datetime-string",
+                "@required":"false",
+                "@target-type":"date",
+                "description":"An optional datetime parameter."
+              },
+              {
+                "@name":"MyParameter7",
+                "@type":"date-string",
+                "@required":"false",
+                "@target-type":"date",
+                "description":"An optional date parameter."
+              },
+              {
+                "@name":"MyParameter8",
+                "@type":"time-string",
+                "@required":"false",
+                "@target-type":"long",
+                "description":"An optional time parameter."
+              }
+            ]
+          },
+          "status-codes":
+          {
+                    "status":
+            [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "FINISHED",
+                "description": "Used when the step finished successfully."
+                        },
+                        {
+                            "@code": "FINISHED_WITH_WARNINGS",
+                "description": "Used when the step finished with warnings."
+                        }
+                    ]
+                }
+        }
+      ],
+      "pipeline-step":
+      [
+        {
+          "@type-id":"custom.MyCustomPipelineStepType",
+          "@supports-parallel-execution":"false",
+          "@supports-site-context":"false",
+          "@supports-organization-context":"true",
+          "pipeline":"MyProcessPipeline-MyStartNode",
+          "description":"This is a custom pipeline step type",
+          "parameters":
+          {
+            "parameter":
+            [
+              {
+                "@name":"MyParameter1",
+                "@type":"boolean",
+                "@required":"true",
+                "description":"A required boolean parameter."
+              }
+            ]
+          },
+          "status-codes":
+          {
+                    "status":
+            [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        }
+                    ]
+                }
+        }
+      ],
+      "chunk-script-module-step":
+      [
+        {
+          "@type-id":"custom.MyCustomChunkScriptModuleStep",
+          "@supports-parallel-execution":"false",
+          "@supports-site-context":"true",
+          "@supports-organization-context":"false",
+          "description":"My custom chunk script step type",
+          "module":"app_custom_ylepetchenko/cartridge/scripts/steps/test.js",
+          "chunk-size":10,
+          "transactional":"true",
+          "parameters":
+          {
+            "parameter":
+            [
+              {
+                "@name":"MyParameter",
+                "@type":"boolean",
+                "@required":"false"
+              }
+            ]
+          },
+          "status-codes":
+          {
+                    "status":
+            [
+                        {
+                            "@code": "ERROR",
+                            "description": "Used when the step failed with an error."
+                        },
+                        {
+                            "@code": "OK",
+                "description": "Used when the step finished successfully."
+                        }
+                    ]
+                }
+        }
+      ]
+    }
+  }

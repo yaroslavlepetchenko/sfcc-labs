@@ -3,6 +3,7 @@
     <isscript>
         var assets = require('*/cartridge/scripts/assets');
         assets.addCss('/css/search.css');
+        assets.addJs('/js/search.js');
     </isscript>
 
     <isslot

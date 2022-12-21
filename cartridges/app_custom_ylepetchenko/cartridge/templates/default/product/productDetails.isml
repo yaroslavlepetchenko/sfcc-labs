@@ -53,6 +53,8 @@
                         </div>
                     </div>
 
+                    <isinclude template="product/components/popUpNotify">
+
                     <div class="attributes">
                         <!-- Attributes and Quantity -->
                         <isinclude template="product/components/mainAttributes" />

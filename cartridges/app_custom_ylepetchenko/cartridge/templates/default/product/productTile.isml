@@ -1,4 +1,7 @@
+<isinclude template="components/modules" />
+
 <div class="product-tile">
+
     <!-- dwMarker="product" dwContentID="${product.uuid}" -->
     <isinclude template="product/components/productTileImage" />
     <div class="tile-body">
@@ -15,9 +18,18 @@
             <isinclude template="product/components/pricing/main" />
         </isif>
 
+
         <isif condition="${pdict.display.ratings !== false}">
             <isinclude template="product/productTileFooter" />
         </isif>
+
+    </div>
+
+    <div class="show-custom-dropdown">
+            <h3 class="dropdown-toggle">Order</h3>
+            <div class="custom-dropdown">
+                <isdropdowndetails product="${pdict.productDetails}" url="${pdict.addToCartUrl}"></isdropdowndetails>
+            </div>
     </div>
     <!-- END_dwmarker -->
 </div>

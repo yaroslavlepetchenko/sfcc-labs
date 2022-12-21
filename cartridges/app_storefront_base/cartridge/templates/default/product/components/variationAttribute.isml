@@ -56,7 +56,7 @@ Template Notes:
             </option>
             <isloop items="${attr.values}" var="attrValue">
                 <option value="${attrValue.url}" data-attr-value="${attrValue.value}"
-                    ${!attrValue.selectable ? 'disabled' : ''}
+                    ${!attrValue.selectable ? 'class=unavailable' : ''}
                     ${attrValue.selected ? 'selected' : ''}
                 >
                     ${attrValue.displayValue}

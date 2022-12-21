@@ -219,5 +219,25 @@ module.exports = {
             getContent($(this), $('#content-search-results'));
             $('.show-more-content').remove();
         });
+    },
+
+    dropdownStuff: function(){
+        $('div.cat').on('mouseover', function () {
+            console.log('woop-woop');
+            $(this).children('.onClp').css('display', 'flex');
+        });
+        $('div.cat').on('mouseout', function () {
+            $(this).children('a.onClp').css('display', 'none');
+        });
+    },
+
+    plpDropdown: function() {
+        $('.custom-dropdown').css('display', 'none');
+        $('.show-custom-dropdown').on('mouseover', function() {
+            $(this).find('.custom-dropdown').css('display', 'grid');
+        });
+        $('.show-custom-dropdown').on('mouseout', function() {
+            $(this).find('.custom-dropdown').css('display', 'none');
+        })
     }
 };

@@ -101,5 +101,29 @@ module.exports = {
             });
             return false;
         });
+    },
+
+    setAddressType: function(){
+        $('a.nav-link').click(function(e){
+            e.preventDefault();
+            $('#addressType').val($(this).attr('aria-controls'));
+        });
+    },
+
+    choseListByAddressType: function(){
+        $('.billingContainer').css('display', 'block');
+        $('.shippingContainer').css('display', 'none');
+        $('#billingLink').click(function(e){
+            console.log('billing');
+            e.preventDefault();
+                $('.billingContainer').css('display', 'block');
+                $('.shippingContainer').css('display', 'none');
+        });
+        $('#shippingLink').click(function(e){
+            console.log('shipping');
+            e.preventDefault();
+                $('.billingContainer').css('display', 'none');
+                $('.shippingContainer').css('display', 'block');
+        });
     }
 };
