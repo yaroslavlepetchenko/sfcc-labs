@@ -81,20 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/selectNotAvailableVariant.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js":
-/*!***********************************************************************************************!*\
-  !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js ***!
-  \***********************************************************************************************/
+/***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/selectNotAvailableVariant.js":
+/*!*****************************************************************************************************!*\
+  !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/selectNotAvailableVariant.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n\r\nmodule.exports = {\r\n    dropdownStuff: function(){\r\n        $('dropdown-item dropdown-toggle cat').on('mouseover', function () {\r\n            $('onClp').css('display', 'flex');\r\n        });\r\n    }\r\n};\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/customDropdownStuff.js?");
+eval("\r\n\r\nmodule.exports = {\r\n    selectUnselectable: function() {\r\n        console.log('custom shit');\r\n        $('.unavailable').on('click', function() {\r\n            console.log('aha');\r\n        });\r\n    }\r\n};\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/selectNotAvailableVariant.js?");
 
 /***/ })
 

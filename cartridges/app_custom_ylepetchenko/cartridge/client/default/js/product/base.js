@@ -13,7 +13,11 @@ function getPidValue($el) {
         pid = $($el).closest('.modal-content').find('.product-quickview').data('pid');
     } else if ($('.product-set-detail').length || $('.product-set').length) {
         pid = $($el).closest('.product-detail').find('.product-id').text();
-    } else {
+    }
+     else if ($('.search-results').length) {
+        pid = $($el).parents('.product-detail').data('pid');
+    }
+    else {
         pid = $('.product-detail:not(".bundle-item")').data('pid');
     }
 
@@ -343,7 +347,6 @@ function attributeSelect(selectedValueUrl, $productContainer) {
     if (selectedValueUrl) {
         $('body').trigger('product:beforeAttributeSelect',
             { url: selectedValueUrl, container: $productContainer });
-
         $.ajax({
             url: selectedValueUrl,
             method: 'GET',
@@ -357,6 +360,37 @@ function attributeSelect(selectedValueUrl, $productContainer) {
             },
             error: function () {
                 $.spinner().stop();
+                if($('.unavailable')) {
+                    console.log('sup');
+                    $('#popUpNotify').css('display', 'flex');
+                    $('.sizePopUp').val($('.unavailable').html());
+                    $('.productId').val($('.product-detail').data('pid'));
+                }
+                $('.close').on('click', function() {
+                    $('#popUpNotify').css('display', 'none');
+                });
+                $('.notifyButton').on('click', function() {
+                    var prodId = $('.productId').val();
+                    var email = $('.emailInput').val();
+                    var size = $('.sizePopUp').val();
+                    var info = {}
+                    info[prodId+ '_' + size.trim()] = email;
+                    info = JSON.stringify(info);
+                    console.log(info);
+                    $.ajax({
+                        url: $('#popUpNotify').data('suburl'),
+                        method: 'POST',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        data: info,
+                        success: function () {
+                            console.log($('#popUpNotify').data('suburl'));
+                        },
+                        error: function () {
+                            console.log('oops');
+                        }
+                    });
+                });
             }
         });
     }
@@ -610,6 +644,7 @@ module.exports = {
             e.preventDefault();
 
             var $productContainer = $(this).closest('.product-detail');
+            //var $productContainer = $(this).closest('.product');
             if (!$productContainer.length) {
                 $productContainer = $(this).closest('.modal-content').find('.product-quickview');
             }
@@ -627,7 +662,6 @@ module.exports = {
             var pid;
             var pidsObj;
             var setPids;
-
             $('body').trigger('product:beforeAddToCart', this);
 
             if ($('.set-items').length && $(this).hasClass('add-to-cart-global')) {
@@ -646,7 +680,6 @@ module.exports = {
             }
 
             pid = getPidValue($(this));
-
             var $productContainer = $(this).closest('.product-detail');
             if (!$productContainer.length) {
                 $productContainer = $(this).closest('.quick-view-dialog').find('.product-detail');

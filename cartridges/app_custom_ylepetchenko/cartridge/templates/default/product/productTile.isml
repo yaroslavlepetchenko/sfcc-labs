@@ -24,6 +24,12 @@
         </isif>
 
     </div>
-    <isdropdowndetails product="${product}"></isdropdowndetails>
+
+    <div class="show-custom-dropdown">
+            <h3 class="dropdown-toggle">Order</h3>
+            <div class="custom-dropdown">
+                <isdropdowndetails product="${pdict.productDetails}" url="${pdict.addToCartUrl}"></isdropdowndetails>
+            </div>
+    </div>
     <!-- END_dwmarker -->
 </div>

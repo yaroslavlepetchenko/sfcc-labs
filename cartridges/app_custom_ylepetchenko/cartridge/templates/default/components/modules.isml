@@ -6,4 +6,5 @@
 <ismodule   template="product/popUpDetails"
             name="dropdowndetails"
             attribute="product"
+            attribute="url"
 />
