@@ -1,0 +1,20 @@
+<div class="modal" id="popUpNotify" data-suburl="${pdict.subscriptionUrl}" tabindex="10" role="dialog" aria-labelledby="requestPasswordResetModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title request-password-title">Notify Me</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <input class="productId" type="hidden" />
+                <label for="emailInput">Email</label>
+                <input name="emailInput" type="text" class="emailInput" />
+                <hr />
+                <label for="sizeOutput">Size</label>
+                <input name="sizeOutput" type="text" readonly class="sizePopUp" />
+                <hr />
+                <input type="button" value="Save" class="notifyButton" />
+            </div>
+        </div>
+    </div>
+</div>

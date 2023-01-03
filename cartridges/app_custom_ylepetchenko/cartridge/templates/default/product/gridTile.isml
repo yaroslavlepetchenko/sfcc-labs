@@ -1,5 +1,8 @@
 <isset name="showQuickView" value="${true}" scope="page" />
 <isset name="product" value="${pdict.product}" scope="page" />
-<div class="product" data-pid="${product.id}">
+<div class="product" data-pid="${product.id}"
+     data-remove-url="${pdict.URLUtils.url('Wishlist-RemoveProduct','pid', product.id)}"
+     data-add-url="${URLUtils.url('Wishlist-AddProduct')}"
+     >
     <isinclude template="product/productTile" />
 </div>

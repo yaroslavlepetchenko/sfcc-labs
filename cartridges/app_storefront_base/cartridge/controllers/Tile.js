@@ -28,6 +28,8 @@ var cache = require('*/cartridge/scripts/middleware/cache');
 server.get('Show', cache.applyPromotionSensitiveCache, function (req, res, next) {
     var URLUtils = require('dw/web/URLUtils');
     var ProductFactory = require('*/cartridge/scripts/factories/product');
+    var productHelper = require('*/cartridge/scripts/helpers/productHelpers');
+    var ContentMgr = require('dw/content/ContentMgr');
 
     // The req parameter has a property called querystring. In this use case the querystring could
     // have the following:
@@ -59,8 +61,15 @@ server.get('Show', cache.applyPromotionSensitiveCache, function (req, res, next)
         quickViewUrl = URLUtils.url('Home-Show');
     }
 
+    var showProductPageHelperResult = productHelper.showProductPage(req.querystring, req.pageMetaData);
+    //var apiContent = ContentMgr.getContent(req.querystring.cid);
+    //var content = apiContent.custom.body.markup;
+    var addToCartUrl = URLUtils.url('Cart-AddProduct');
     var context = {
         product: product,
+        productDetails: showProductPageHelperResult.product,
+        addToCartUrl: addToCartUrl,
+        URLUtils: URLUtils,
         urls: {
             product: productUrl,
             quickView: quickViewUrl

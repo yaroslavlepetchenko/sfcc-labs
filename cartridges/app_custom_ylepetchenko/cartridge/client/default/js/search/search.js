@@ -154,7 +154,9 @@ module.exports = {
 
     showMore: function () {
         // Show more products
+        console.log('woop222');
         $('.container').on('click', '.show-more button', function (e) {
+            console.log('woop-woop');
             e.stopPropagation();
             var showMoreUrl = $(this).data('url');
             e.preventDefault();
@@ -169,6 +171,22 @@ module.exports = {
                     $('.grid-footer').replaceWith(response);
                     updateSortOptions(response);
                     $.spinner().stop();
+                    var wishlistProductIds = window.wishlistProductList.split('&quot;');
+        var all = $('.product').map(function() {
+            return $(this);
+        }).get();
+        wishlistProductIds.forEach(function(wid) {
+            for(var i=0; i<all.length; i++) {
+                var pid = all[i].data('pid');
+                if(wid == pid) {
+                    var icon = all[i].find($('.wishlistTile')).find('i');
+                    if(icon.hasClass('fa-heart-o')) {
+                        icon.removeClass('fa-heart-o');
+                        icon.addClass('fa-heart');
+                    }
+                }
+            }
+        });
                 },
                 error: function () {
                     $.spinner().stop();
@@ -219,5 +237,24 @@ module.exports = {
             getContent($(this), $('#content-search-results'));
             $('.show-more-content').remove();
         });
+    },
+
+    dropdownStuff: function(){
+        $('div.cat').on('mouseover', function () {
+            $(this).children('.onClp').css('display', 'flex');
+        });
+        $('div.cat').on('mouseout', function () {
+            $(this).children('a.onClp').css('display', 'none');
+        });
+    },
+
+    plpDropdown: function() {
+        $('.custom-dropdown').css('display', 'none');
+        $('.show-custom-dropdown').on('mouseover', function() {
+            $(this).find('.custom-dropdown').css('display', 'grid');
+        });
+        $('.show-custom-dropdown').on('mouseout', function() {
+            $(this).find('.custom-dropdown').css('display', 'none');
+        })
     }
 };

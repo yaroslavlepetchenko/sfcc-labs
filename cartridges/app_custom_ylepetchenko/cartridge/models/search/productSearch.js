@@ -6,6 +6,8 @@ var URLUtils = require('dw/web/URLUtils');
 var preferences = require('*/cartridge/config/preferences');
 var ProductSortOptions = require('*/cartridge/models/search/productSortOptions');
 var urlHelper = require('*/cartridge/scripts/helpers/urlHelpers');
+var PromotionMgr = require('dw/campaign/PromotionMgr');
+var Promotion = require('./attributeRefinementValue/promotion');
 
 var ACTION_ENDPOINT = 'Search-Show';
 var ACTION_ENDPOINT_AJAX = 'Search-ShowAjax';
@@ -37,18 +39,69 @@ function getResetLink(search, httpParams) {
  * @return {Refinement[]} - List of parsed refinements
  */
 function getRefinements(productSearch, refinements, refinementDefinitions) {
-    return collections.map(refinementDefinitions, function (definition) {
-        var refinementValues = refinements.getAllRefinementValues(definition);
-        var values = searchRefinementsFactory.get(productSearch, definition, refinementValues);
 
-        return {
-            displayName: definition.displayName,
-            isCategoryRefinement: definition.categoryRefinement,
-            isAttributeRefinement: definition.attributeRefinement,
-            isPriceRefinement: definition.priceRefinement,
-            isPromotionRefinement: definition.promotionRefinement,
-            values: values
+    var activePromotions = PromotionMgr.activeCustomerPromotions.getProductPromotions();
+        var promoIds = collections.map(activePromotions, function (promo) {
+            return promo.ID;
+        });
+        var promotionValues = collections.map(activePromotions, function(promo){
+            return {
+                promotionRefinement: true,
+                displayName: 'Promotion',
+                attributeID: promo.ID,
+                name: promo.name,
+                attributeRefinement: false,
+                priceRefinement: false,
+                categoryRefinement: false,
+                cutoffThreshold: 5,
+                UUID: promo.UUID,
+                lastModified: null,
+                creationDate: null,
+                url: productSearch.urlRefinePromotion('Search-Show', promo.ID)
+            }
+        });
+
+        var promotionDefinition = {
+            displayName: 'Promotion',
+            promotionRefinement: true,
+            priceRefinement: false,
+            categoryRefinement: false,
+            attributeRefinement: false,
+            values: []
         };
+
+        promotionValues.forEach(function (promo){
+           promotionDefinition.values.push(promo);
+        });
+
+        refinementDefinitions.add1(promotionDefinition);
+
+    return collections.map(refinementDefinitions, function (definition) {
+        if(definition.promotionRefinement == false){
+            var refinementValues = refinements.getAllRefinementValues(definition);
+            var values = searchRefinementsFactory.get(productSearch, definition, refinementValues);
+        }
+
+        if(definition.promotionRefinement == false){
+            return {
+                displayName: definition.displayName,
+                isCategoryRefinement: definition.categoryRefinement,
+                isAttributeRefinement: definition.attributeRefinement,
+                isPriceRefinement: definition.priceRefinement,
+                isPromotionRefinement: definition.promotionRefinement,
+                values: values
+            };
+        }
+        if(definition.promotionRefinement == true){
+            return {
+                displayName: definition.displayName,
+                isCategoryRefinement: definition.categoryRefinement,
+                isAttributeRefinement: definition.attributeRefinement,
+                isPriceRefinement: definition.priceRefinement,
+                isPromotionRefinement: definition.promotionRefinement,
+                values:  definition.values
+            };
+        }
     });
 }
 
@@ -243,6 +296,7 @@ function ProductSearch(productSearch, httpParams, sortingRule, sortingOptions, r
 
 Object.defineProperty(ProductSearch.prototype, 'refinements', {
     get: function () {
+
         if (!this.cachedRefinements) {
             this.cachedRefinements = getRefinements(
                 this.productSearch,

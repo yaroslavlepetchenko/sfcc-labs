@@ -36,6 +36,7 @@ server.get('Show', cache.applyPromotionSensitiveCache, consentTracking.consent, 
     var productHelper = require('*/cartridge/scripts/helpers/productHelpers');
     var showProductPageHelperResult = productHelper.showProductPage(req.querystring, req.pageMetaData);
     var productType = showProductPageHelperResult.product.productType;
+    var URLUtils = require('dw/web/URLUtils');
     if (!showProductPageHelperResult.product.online && productType !== 'set' && productType !== 'bundle') {
         res.setStatusCode(404);
         res.render('error/notFound');
@@ -52,6 +53,7 @@ server.get('Show', cache.applyPromotionSensitiveCache, consentTracking.consent, 
         } else {
             res.render(showProductPageHelperResult.template, {
                 product: showProductPageHelperResult.product,
+                subscriptionUrl: URLUtils.url('Subscription-Subscribe'),
                 addToCartUrl: showProductPageHelperResult.addToCartUrl,
                 resources: showProductPageHelperResult.resources,
                 breadcrumbs: showProductPageHelperResult.breadcrumbs,

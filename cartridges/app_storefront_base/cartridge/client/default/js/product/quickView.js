@@ -152,7 +152,6 @@ module.exports = {
             // update global add to cart (single products, bundles)
             var dialog = $(response.$productContainer)
                 .closest('.quick-view-dialog');
-
             $('.add-to-cart-global', dialog).attr('disabled',
                 !$('.global-availability', dialog).data('ready-to-order')
                 || !$('.global-availability', dialog).data('available')

@@ -1,0 +1,5 @@
+<h1>Dear customer!</h1>
+<h4>
+    ${pdict.name}, size: ${(pdict.custom.size - 0).toString()} you wanted to buy is available again!
+    Visit our store to check it out!
+</h4>

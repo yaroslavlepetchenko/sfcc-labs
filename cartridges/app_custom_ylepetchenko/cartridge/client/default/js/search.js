@@ -5,4 +5,6 @@ var processInclude = require('./util');
 $(document).ready(function () {
     processInclude(require('./search/search'));
     processInclude(require('./product/quickView'));
+    processInclude(require('./product/order'));
+    processInclude(require('./product/wishlistHeart'));
 });

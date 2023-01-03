@@ -1,3 +1,8 @@
+<isscript>
+    var assets = require('*/cartridge/scripts/assets.js');
+    assets.addCss('/css/components/customClasses.css');
+    assets.addJs('/js/customDropdownStuff.js');
+</isscript>
 <nav class="navbar navbar-expand-md bg-inverse col-12">
     <div class="close-menu clearfix d-lg-none">
         <div class="back pull-left">

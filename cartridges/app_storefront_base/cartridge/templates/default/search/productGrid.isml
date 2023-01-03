@@ -1,3 +1,10 @@
+<isscript>
+        //var assets = require('*/cartridge/scripts/assets');
+        //assets.addJs('/js/product/quickView.js');
+        //assets.addJs('/js/product/order.js');
+        //assets.addCss('/css/product/detail.css');
+</isscript>
+
 <isinclude template="search/components/productTiles" />
 
 <div class="col-12 grid-footer"

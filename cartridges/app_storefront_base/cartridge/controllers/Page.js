@@ -190,6 +190,7 @@ server.get('Show', cache.applyDefaultCache, consentTracking.consent, function (r
     var pageMetaHelper = require('*/cartridge/scripts/helpers/pageMetaHelper');
 
     var page = PageMgr.getPage(req.querystring.cid);
+    var showProductPageHelperResult = productHelper.showProductPage(req.querystring, req.pageMetaData);
 
     if (page != null && page.isVisible()) {
         if (!page.hasVisibilityRules()) {
