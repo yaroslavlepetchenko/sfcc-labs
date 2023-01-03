@@ -5,6 +5,7 @@
  */
 
 var server = require('server');
+var productListHelper = require('*/cartridge/scripts/productList/productListHelpers');
 var page = module.superModule;
 server.extend(page);
 
@@ -82,6 +83,32 @@ server.append('EditPassword', function(req, res, next){
     }
 
     res.render('account/password', { mobile: true, content: content });
+    next();
+});
+
+server.append('Header', function(req, res, next) {
+    var wishListType = require('dw/customer/ProductList').TYPE_WISH_LIST;
+    var collections = require('*/cartridge/scripts/util/collections');
+    var apiWishList = productListHelper.getList(req.currentCustomer.raw, {
+        type: wishListType
+    });
+
+    var productItemsIds;
+
+    if(apiWishList && !empty(apiWishList.items)) {
+        productItemsIds = collections.map(apiWishList.items, function (item) {
+            return item.productID;
+        });
+    }
+
+    var wishlist = {
+        UUID: apiWishList.ID,
+        productItemsIds: JSON.stringify(productItemsIds)
+    };
+    res.setViewData({
+        wishlist: wishlist
+    });
+    var a = 0;
     next();
 });
 

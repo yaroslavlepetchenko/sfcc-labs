@@ -69,6 +69,7 @@ server.get('Show', cache.applyPromotionSensitiveCache, function (req, res, next)
         product: product,
         productDetails: showProductPageHelperResult.product,
         addToCartUrl: addToCartUrl,
+        URLUtils: URLUtils,
         urls: {
             product: productUrl,
             quickView: quickViewUrl

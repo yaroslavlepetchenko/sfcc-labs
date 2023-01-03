@@ -122,6 +122,18 @@ eval("\nvar base = __webpack_require__(/*! ./base */ \"./cartridges/app_custom_y
 
 /***/ }),
 
+/***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/wishlist.js":
+/*!********************************************************************************************!*\
+  !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/wishlist.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\n\n/**\n * appends params to a url\n * @param {string} data - data returned from the server's ajax call\n * @param {Object} button - button that was clicked to add a product to the wishlist\n */\nfunction displayMessage(data, button) {\n    $.spinner().stop();\n    var status;\n    if (data.success) {\n        status = 'alert-success';\n    } else {\n        status = 'alert-danger';\n    }\n\n    if ($('.add-to-wishlist-messages').length === 0) {\n        $('body').append(\n        '<div class=\"add-to-wishlist-messages \"></div>'\n        );\n    }\n    $('.add-to-wishlist-messages')\n        .append('<div class=\"add-to-wishlist-alert text-center ' + status + '\">' + data.msg + '</div>');\n\n    setTimeout(function () {\n        $('.add-to-wishlist-messages').remove();\n        button.removeAttr('disabled');\n    }, 5000);\n}\n\nmodule.exports = {\n    addToWishlist: function () {\n        $('.add-to-wish-list').on('click', function (e) {\n            e.preventDefault();\n            var url = $(this).data('href');\n            var button = $(this);\n            var pid = $(this).closest('.product-detail').find('.product-id').html();\n            var optionId = $(this).closest('.product-detail').find('.product-option').attr('data-option-id');\n            var optionVal = $(this).closest('.product-detail').find('.options-select option:selected').attr('data-value-id');\n            optionId = optionId || null;\n            optionVal = optionVal || null;\n            if (!url || !pid) {\n                return;\n            }\n\n            $.spinner().start();\n            $(this).attr('disabled', true);\n            $.ajax({\n                url: url,\n                type: 'post',\n                dataType: 'json',\n                data: {\n                    pid: pid,\n                    optionId: optionId,\n                    optionVal: optionVal\n                },\n                success: function (data) {\n                    displayMessage(data, button);\n                },\n                error: function (err) {\n                    displayMessage(err, button);\n                }\n            });\n        });\n    }\n};\n\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/wishlist.js?");
+
+/***/ }),
+
 /***/ "./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/productDetail.js":
 /*!*****************************************************************************************!*\
   !*** ./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/productDetail.js ***!
@@ -130,7 +142,7 @@ eval("\nvar base = __webpack_require__(/*! ./base */ \"./cartridges/app_custom_y
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar processInclude = __webpack_require__(/*! ./util */ \"./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/util.js\");\n\n$(document).ready(function () {\n    //processInclude(require('./selectNotAvailableVariant'));\n    processInclude(__webpack_require__(/*! ./product/detail */ \"./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/detail.js\"));\n});\n\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/productDetail.js?");
+eval("\n\nvar processInclude = __webpack_require__(/*! ./util */ \"./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/util.js\");\n\n$(document).ready(function () {\n    //processInclude(require('./selectNotAvailableVariant'));\n    processInclude(__webpack_require__(/*! ./product/detail */ \"./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/detail.js\"));\n    processInclude(__webpack_require__(/*! ./product/wishlist */ \"./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/product/wishlist.js\"));\n});\n\n\n//# sourceURL=webpack:///./cartridges/app_custom_ylepetchenko/cartridge/client/default/js/productDetail.js?");
 
 /***/ }),
 
